@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "glob": "*",
+    "moment": "^2.9.0",
+    "say": "^0.6.0",
+    "underscore": "*",
+    "underscore.string": "^2.4.0",
+    "vdata-parser": "*"
+  }
+}
