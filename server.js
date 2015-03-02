@@ -17,15 +17,16 @@ function tc(time){
 
 function getTiming(e){
 
-	var start 	=	moment(tc(e["DTSTART;TZID=Europe/Paris"]), moment.ISO_8601),
-			end 		=	moment(tc(e["DTEND;TZID=Europe/Paris"]), moment.ISO_8601),
+	var day     	= e["DTSTART;VALUE=DATE"],
+	 		start 		=	moment(tc(e["DTSTART;TZID=Europe/Paris"]), moment.ISO_8601),
+			end 			=	moment(tc(e["DTEND;TZID=Europe/Paris"]), moment.ISO_8601),
 			hDuration = end.from(start, true),
-			startX 	=	start.format("X"),
-			endX 		=	end.format("X"),
-			duration= (endX-startX)
+			startX 		=	start.format("X"),
+			endX 			=	end.format("X"),
+			duration 	= (endX-startX)
 			;
-
 	return {
+		day    		: 	day,
 		start    	: 	start,
 		end 		 	: 	end,
 		startX    : 	startX,
@@ -40,19 +41,24 @@ function addToTimeline(i){
 	var timing = getTiming(e);
 	var t = (timing.startX - t0.startX) / speed;
 
-	console.log("in ", t/1000, "s : \t\t"+e.SUMMARY);
+	console.log("in ", t/1000, "s : \t\t"+timing.day);
 
-	if(t != "NaN" && t>0){
+
+
+//	if(t != "NaN" && t>0){
 		setTimeout(function(){
+
+			if (typeof variable !== 'undefined') console.log("day", timing.day );
+
 			console.log(timing.start.format("DD MM YYYY, HH:mm:ss"),"\t", timing.hDuration,"\t", e.SUMMARY );
 		}, t);
-	}
+//	}
 }
 
 var events,
 		curEvt = 0,  
 		t0 = 0,
-		speed = 1000;
+		speed = 1500;
 
 parser.fromFile(__dirname + '/bv.ics', function (err, data) {
 
@@ -61,7 +67,10 @@ parser.fromFile(__dirname + '/bv.ics', function (err, data) {
 
 	_.each(events, function(e, index) {
 		addToTimeline(index);
+		console.info(e);
 	});
+
+	console.log(events.length);
 
 	// // save a json
 	var outputFilename = __dirname + '/bv.json';

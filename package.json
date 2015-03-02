@@ -5,6 +5,16 @@
     "say": "^0.6.0",
     "underscore": "*",
     "underscore.string": "^2.4.0",
-    "vdata-parser": "*"
+    "vdata-parser": "*",
+    "express": "3.1.0",
+    "fs-extra": "*",
+    "glob": "*",
+    "glob-all": "^3.0.1",
+    "gm": "*",
+    "jade": "*",
+    "markdown": "*",
+    "socket.io": "*",
+    "srt": "0.0.3",
+    "underscore": "*"
   }
 }
