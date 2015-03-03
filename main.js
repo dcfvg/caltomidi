@@ -29,9 +29,11 @@ module.exports = function(app, io){
   t0 = 0,
   speed = 635;
 
+  var time0 = 0;
+
 
   speed = 635;
-  //speed = 100;
+  //speed = 300;
   
   console.log("portcount",output.getPortCount());
   console.log("portname",output.getPortName(0));
@@ -48,7 +50,7 @@ module.exports = function(app, io){
     parser.fromFile(sessions_p + '/bv.ics', function (err, data) {
 
       events = _.sortBy(data.VCALENDAR.VEVENT, function(e){ return tc(e.DTSTAMP);});
-      t0 = getTiming(events[28]); // first valid date 
+      t0 = getTiming(events[30]); // first valid date 
 
       _.each(events, function(e, index) {
         addToTimeline(index);
@@ -117,8 +119,11 @@ module.exports = function(app, io){
   }
   function addToTimeline(i){
 
+
     var e = events[i];
     var timing = getTiming(e);
+        if(time0 == 0) time0 = timing.startX - 5;
+
     var t = (timing.startX - t0.startX) / speed;
     
     if(t !== "NaN" && t>0){
@@ -143,7 +148,7 @@ module.exports = function(app, io){
 
 
             //say.speak(voice, rate, shuffled);
-            output.sendMessage([144,note,vol]);
+            output.sendMessage([145,note,vol]);
 
             console.log(timing.startX, timing.start.format("DD MM YYYY, HH:mm:ss"),"\t\t note:",note,"\t", timing.duration,"s \t vol:",vol ,"\t", e.SUMMARY );
         }, t);
