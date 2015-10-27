@@ -1,4 +1,8 @@
 # icaltomidi
 Converts ical agenda into midi signal to make great music from a busy life.
 
-![alt text](http://midi.dcfvg.com/thumbs/23bc4f38a0e464cc550c0809566499d1.0.900.0.0.0.100.png?1415728070)
+![alt text](http://midi.dcfvg.com/content/1-actors/2-lifetrack/Capture%20d%E2%80%99%C3%A9cran%202014-11-05%20%C3%A0%2020.55.11.png)
+![alt text](http://midi.dcfvg.com/content/1-actors/2-lifetrack/DSC00699.jpg)
+
+https://vimeo.com/121226705
+
